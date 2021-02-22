@@ -1,0 +1,58 @@
+﻿@model Project.Models.Entity.MunicipioEntity
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+ 
+ 
+
+<div class="table-responsive">
+
+    <div class="row">
+
+        <div class="col-md-12"><h4 class="card-title mb-4 mt-2">Crear Municipios</h4></div>
+
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Codigo" class="control-label"></label>
+                    <input asp-for="Codigo" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                    @if (ViewBag.mensaje != null)
+                    {
+                        <span class="text-danger">@ViewBag.mensaje </span>
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-light">Regresar</a>
+
+
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+ 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
