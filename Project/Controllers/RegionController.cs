@@ -23,7 +23,7 @@ namespace Project.Controllers
         // GET: Region
         public async Task<IActionResult> Index()
         {
-            TempData["Success"] = "Success";
+            
             return View(await _context.Region.ToListAsync());
         }
 

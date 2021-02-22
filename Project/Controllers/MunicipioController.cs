@@ -22,24 +22,7 @@ namespace Project.Controllers
             return View(await _context.Municipio.ToListAsync());
         }
 
-        // GET: Municipio/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var municipioEntity = await _context.Municipio
-                .FirstOrDefaultAsync(m => m.MunicipioId == id);
-            if (municipioEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(municipioEntity);
-        }
-
+      
         // GET: Municipio/Create
         public IActionResult Create()
         {
@@ -162,7 +145,6 @@ namespace Project.Controllers
 
         // POST: Municipio/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var municipioEntity = await _context.Municipio.FindAsync(id);

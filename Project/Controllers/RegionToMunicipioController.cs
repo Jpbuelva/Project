@@ -21,11 +21,10 @@ namespace Project.Controllers
         }
 
         // GET: RegionToMunicipio
-        public ActionResult Index()
+        public IActionResult Index()
         {
             RegionMunicipioDto model = new RegionMunicipioDto();
-            var listRegion = _context.Region.ToList();
-            TempData["Success"] = "Success";
+            var listRegion = _context.Region.ToList();           
 
             model.RegionListCombox = new SelectList(listRegion, "RegionId", "Nombre", null);
             return View(model);
