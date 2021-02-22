@@ -1,6 +1,4 @@
-﻿using Project.Validation;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project.Models.Entity
@@ -10,9 +8,8 @@ namespace Project.Models.Entity
     {
         [Key]
         public int RegionId { get; set; }
-       
+
         [Column(TypeName = "varchar(5)")]
-        [CodigoUnicoRegion]
         [Required(ErrorMessage = "El campo es requerido")]
         public int Codigo { get; set; }
 

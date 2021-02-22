@@ -1,30 +1,92 @@
-﻿@model Project.Models.Entity.RegionEntity
+﻿@model Project.Models.Dto.RegionDto
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+ 
 
-<div>
-    <h4>RegionEntity</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-    </dl>
+ 
+    <div class="table-responsive">
+
+        <div class="row">
+
+            <div class="col-md-12"><h4 class="card-title mb-4 mt-2">Detalles Región</h4></div>
+          
+        </div>
+ 
+
+        <table class="table mt-2">
+            <thead>
+                <tr class="table-dark">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Codigo)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+ 
+<div class="table-responsive">
+
+    <div class="row">
+
+        <div class="col-md-12"><h4 class="card-title mb-1 mt-1">Municipios Relacionados</h4></div> 
+    </div>
+
+    <table class="table mt-2">
+        <thead>
+            <tr class="table-dark">
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DetallesMunicipio)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.RegionId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-light">Regresar</a>
+
+    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model.RegionId">Editar</a>  
+ 
 </div>

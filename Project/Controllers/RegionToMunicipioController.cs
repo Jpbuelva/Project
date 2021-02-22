@@ -25,6 +25,8 @@ namespace Project.Controllers
         {
             RegionMunicipioDto model = new RegionMunicipioDto();
             var listRegion = _context.Region.ToList();
+            TempData["Success"] = "Success";
+
             model.RegionListCombox = new SelectList(listRegion, "RegionId", "Nombre", null);
             return View(model);
         }
@@ -45,13 +47,14 @@ namespace Project.Controllers
 
                     //Get list municipio
                     model.MunicipiosList = new List<MunicipioDto>();
-                    var listMunicipio = _context.Municipio.ToList();
+                    var listMunicipio = _context.Municipio.Where(x=>x.Estado==true). ToList();
 
                     model.MunicipiosList = (from item in listMunicipio
                                             select new MunicipioDto()
                                             {
                                                 MunicipioId = item.MunicipioId,
                                                 Nombre = item.Nombre,
+                                                Codigo=item.Codigo,
                                                 Active = ((list.Where(x => x.MunicipioId == item.MunicipioId && x.RegionId == region.RegionId).Count() > 0) ? true : false)
 
                                             }).ToList();
@@ -77,8 +80,10 @@ namespace Project.Controllers
         [HttpPost]
         public ActionResult Save(RegionMunicipioDto Rs)
         {
+          
             try
             {
+                 
                 int cont = 0;
                 foreach (var item in Rs.MunicipiosList)
                 {
